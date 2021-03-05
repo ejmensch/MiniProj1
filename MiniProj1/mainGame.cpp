@@ -12,9 +12,10 @@
 using namespace std;
 
 int main() {
-srand(time(NULL));
-Board board('m',"fido", true);
-return 0;
+	srand(time(NULL));
+	Board board('m',"fido", true);
+	return 0;
 }
 
 // What's poppin
+// Brand new whip just hopped in
