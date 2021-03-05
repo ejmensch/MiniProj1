@@ -28,18 +28,21 @@ Board::Board(char diff, string name, bool d) {
 	InitAll();
 }
 void Board::InitAll() {
-	/*bool keepPlaying = true;
-	while (keepPlaying) {
-		cout << "What level of difficulty do you want (e, m, or h)?" << endl;
-		char c;
-		cin >> c;
-		level = c;
+	//bool keepPlaying = true;
+	//while (keepPlaying) {
+		//cout << "What level of difficulty do you want (e, m, or h)?" << endl;
+		//char c;
+		//cin >> c;
+		//level = c;
 		startx = rand() % size;
 		starty = 0;
 		endx = rand() % size;
 		endy = size - 1;
 		mydog.x = startx;
-		mydog.y = starty;*/
+		mydog.y = starty;
+		//mydog.printDog();  //EM - i added this to test if it works for 7d.
+		//mydog.die();  //same as above
+		//mydog.won();  //same as above
 		boardConfig();
 		addFood();
 		addTraps();
@@ -238,7 +241,8 @@ void Board::boardConfig() {
 					}
 				}
 			}
-
+			board[startx][starty]='D';//gotta put wall restrictions in cuz they could overlap doggo
+			//board[startx][starty-1]='->'; gotta work on start and end positioning, rn they get overlapped with borders
 
 		}
 	}
@@ -260,6 +264,9 @@ void Board::printBoard() {
 	 */
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
+			/*if(j==0){
+				cout<<'|';
+			}*/
 			cout << board[i][j] << " ";
 		}
 		cout << endl;

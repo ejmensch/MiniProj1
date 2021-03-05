@@ -38,7 +38,9 @@ Dog::Dog(){
 * It returns true if the strength is still >0 and false otherwise.
 */
 
-//void Dog::die();
+void Dog::die(){
+	cout<<"Dang brodie, you're a terrible dog owner. Your dog has died, shame on you."<<endl;
+}
 /* This method just prints out a sad pathetic death of a dog message, letting everyone
 * know of the demise of the dog object. My message has ACK!!! and judgmental statements
 * about how the user is a cruel, heartless person for letting a puppy dog die, but
@@ -50,13 +52,18 @@ void Dog::printDog() {
 	cout << "Current strength: " << strength << endl;
 }
 
-//void Dog::won();
+void Dog::won(){
+	cout<<"Good job dawg, you were successfully able to guide your dog through the evil forest!"<<endl;
+};
 /* again, just a message about the user's incredible prowess in successfully navigating the
 * sweet little puppy dog through the evil forest to the other side. You can make it whatever
 * you like.
 */
 
-//void Dog::reset();
+void Dog::reset(){
+	strength=50;
+	x = y= 0;
+};
 /* this method just resets the strength (for me it was 50) and the x and y to 0 and 0.
 *
 */
