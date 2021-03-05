@@ -150,7 +150,7 @@ void Board::addTraps() {
 					if(x==1){
 						x=rand()%8;
 						if(x==1){
-							board[i][j] = 'F';
+							board[i][j] = 'T';
 						}
 					}
 				}
@@ -159,7 +159,7 @@ void Board::addTraps() {
 					if (x == 1) {
 						x = rand()%8;
 						if (x == 1) {
-							board[i][j] = 'F';
+							board[i][j] = 'T';
 						}
 					}
 				}
@@ -170,7 +170,7 @@ void Board::addTraps() {
 					if(x==1){
 						x=rand()%6;
 						if(x==1){
-							board[i][j] = 'F';
+							board[i][j] = 'T';
 						}
 					}
 				}
@@ -179,7 +179,7 @@ void Board::addTraps() {
 					if (x == 1) {
 						x = rand()%6;
 						if (x == 1) {
-							board[i][j] = 'F';
+							board[i][j] = 'T';
 						}
 					}
 				}
@@ -190,7 +190,7 @@ void Board::addTraps() {
 					if(x==1){
 						x=rand()%5;
 						if(x==1){
-							board[i][j] = 'F';
+							board[i][j] = 'T';
 						}
 					}
 				}
@@ -199,7 +199,7 @@ void Board::addTraps() {
 					if (x == 1) {
 						x = rand()%5;
 						if (x == 1) {
-							board[i][j] = 'F';
+							board[i][j] = 'T';
 						}
 					}
 				}
@@ -246,11 +246,11 @@ void Board::boardConfig() {
 
 
 
-	/*for(j=0; j<20; j++){ //top/bottom borders *put these in print board later and figure out how to make them a border*
+	/*for(j=-1; j<size; j++){ //top/bottom borders *put these in print board later and figure out how to make them a border*
 		board[0][j]='_';
 		board[19][j]='_';
 	}
-	for(i=0;i<21;i++){ //side borders *same thing I said above-EM*
+	for(i=0;i<size;i++){ //side borders *same thing I said above-EM*
 		board[i][0]='|';
 		board[i][19]='|';
 	}*/
@@ -258,8 +258,8 @@ void Board::boardConfig() {
 void Board::printBoard() {
 	/* (8 pts) code for the printBoard method goes here
 	 */
-	for (int i = 0; i < 20; i++) {
-		for (int j = 0; j < 20; j++) {
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
 			cout << board[i][j] << " ";
 		}
 		cout << endl;
