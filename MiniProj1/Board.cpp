@@ -41,8 +41,8 @@ void Board::InitAll() {
 		mydog.x = startx;
 		mydog.y = starty;*/
 		boardConfig();
-		//addFood();
-		//addTraps();
+		addFood();
+		addTraps();
 		printBoard();
 		//playGame();
 		//cout << "Play again? " << endl;
@@ -72,10 +72,140 @@ void Board::playGame() {
 void Board::addFood() {
 	/* (5 pts) code for the addFood method goes here
 	 */
+	int i,j,x;   //i is row , j is column... we can change that later
+	for(i=0; i < 20; i++){
+		for(j=0; j < 20; j++){
+			if (level == 'e') {
+				if(i % 2 != 0){
+					x=rand()%5;
+					if(x==1){
+						x=rand()%5;
+						if(x==1){
+							board[i][j] = 'F';
+						}
+					}
+				}
+				if (j % 2 != 0) {
+					x = rand() % 5;
+					if (x == 1) {
+						x = rand()%5;
+						if (x == 1) {
+							board[i][j] = 'F';
+						}
+					}
+				}
+			}
+			if (level == 'm') {
+				if(i % 2 != 0){
+					x=rand()%6;
+					if(x==1){
+						x=rand()%6;
+						if(x==1){
+							board[i][j] = 'F';
+						}
+					}
+				}
+				if (j % 2 != 0) {
+					x = rand() % 6;
+					if (x == 1) {
+						x = rand()%6;
+						if (x == 1) {
+							board[i][j] = 'F';
+						}
+					}
+				}
+			}
+			if (level == 'h') {
+				if(i % 2 != 0){
+					x=rand()%8;
+					if(x==1){
+						x=rand()%8;
+						if(x==1){
+							board[i][j] = 'F';
+						}
+					}
+				}
+				if (j % 2 != 0) {
+					x = rand() % 8;
+					if (x == 1) {
+						x = rand()%8;
+						if (x == 1) {
+							board[i][j] = 'F';
+						}
+					}
+				}
+			}
+		}
+	}
 }
 void Board::addTraps() {
 	/* (5 pts) code for the addTraps method goes here
 	 */
+	int i,j,x;   //i is row , j is column... we can change that later
+	for(i=0; i < 20; i++){
+		for(j=0; j < 20; j++){
+			if (level == 'e') {
+				if(i % 2 != 0){
+					x=rand()%8;
+					if(x==1){
+						x=rand()%8;
+						if(x==1){
+							board[i][j] = 'F';
+						}
+					}
+				}
+				if (j % 2 != 0) {
+					x = rand() % 8;
+					if (x == 1) {
+						x = rand()%8;
+						if (x == 1) {
+							board[i][j] = 'F';
+						}
+					}
+				}
+			}
+			if (level == 'm') {
+				if(i % 2 != 0){
+					x=rand()%6;
+					if(x==1){
+						x=rand()%6;
+						if(x==1){
+							board[i][j] = 'F';
+						}
+					}
+				}
+				if (j % 2 != 0) {
+					x = rand() % 6;
+					if (x == 1) {
+						x = rand()%6;
+						if (x == 1) {
+							board[i][j] = 'F';
+						}
+					}
+				}
+			}
+			if (level == 'h') {
+				if(i % 2 != 0){
+					x=rand()%5;
+					if(x==1){
+						x=rand()%5;
+						if(x==1){
+							board[i][j] = 'F';
+						}
+					}
+				}
+				if (j % 2 != 0) {
+					x = rand() % 5;
+					if (x == 1) {
+						x = rand()%5;
+						if (x == 1) {
+							board[i][j] = 'F';
+						}
+					}
+				}
+			}
+		}
+	}
 }
 void Board::boardConfig() {
 	/* (8 pts) code for the boardConfig method goes here
