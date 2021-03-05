@@ -9,7 +9,11 @@
 #include <string.h>
 using namespace std;
 
-//Dog::Dog(string n);
+Dog::Dog(string n) {
+	name = n;
+	strength = 50;
+	x = y = 0;
+}
 
 	// constructor, sets the name to be whatever name gets passed in, the
 	 //strength to be 50 (I just picked 50 - you want another number, go for it!) and I made
@@ -17,7 +21,9 @@ using namespace std;
 	 //if I don't initialize all my fields in the constructor
 
 Dog::Dog(){
-
+	name = 'd';
+	strength = 50;
+	x = y = 0;
 };
 /* constructor, I made the default be fluffy, but you can make it anything you like!!
 * I set the strength to be 50 (again, I just picked 50), and I made the original
@@ -39,10 +45,10 @@ Dog::Dog(){
 * yours can be whatever you like.
 */
 
-//void Dog::printDog();
-/* this method just prints out the basic information about the dog - its
-*name and its current strength.
-*/
+void Dog::printDog() {
+	cout << "Dog name: " << name << endl;
+	cout << "Current strength: " << strength << endl;
+}
 
 //void Dog::won();
 /* again, just a message about the user's incredible prowess in successfully navigating the
