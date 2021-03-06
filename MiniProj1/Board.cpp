@@ -306,40 +306,59 @@ void Board::printBoard() {
 			if (i==0) {
 				board[i][j] = '_';
 			}
-			else if (i==21) {
+			if (i==21) {
 				board[i][j] = '_';
 			}
-			else if (j==0) {
+			if (j==0) {
 				board[i][j] = '|';
 			}
-			else if (j==21) {
+			if (j==21) {
 				board[i][j] = '|';
 			}
-			if (board[startx][starty] == board[i][j+1] or board[endx][endy] == board[i][j-1]) {
-				board[i][j] = '-';
-				cout << board[i][j] << ">";
-			}
-			else {
+			//if (board[startx][starty] == board[i][j+1] or board[endx][endy] == board[i][j-1]) {
+			//	board[i][j] = '-';
+			//	cout << board[i][j] << ">";
+			//}
+			//else {
 				cout << board[i][j] << " ";
-			}
+	//	}
 			board[mydog.x][mydog.y]='D';
 		}
 		cout << endl;
 	}
 }
 bool Board::moveDog(char c) {
-	if (c=='r') {
-		mydog.y++;
+	board[mydog.x][mydog.y]=' '; //comment this out if you wanna see trial of movement
+	if(mydog.x==1 || mydog.x==20 || mydog.y==0 || mydog.y==20){//below code reverses the movement attempted
+		if (c == 'r') {
+			mydog.y--;
+		}
+		if (c == 'l') {
+			mydog.y++;
+		}
+		if (c == 'u') {
+			mydog.x++;
+		}
+		if (c == 'd') {
+			mydog.x--;
+		}
+		cout<<"out of bounds"<<endl;
 	}
-	if (c=='l') {
-		mydog.y--;
+	else{
+		if (c == 'r') {
+			mydog.y++;
+		}
+		if (c == 'l') {
+			mydog.y--;
+		}
+		if (c == 'u') {
+			mydog.x--;
+		}
+		if (c == 'd') {
+			mydog.x++;
+		}
 	}
-	if (c=='u') {
-		mydog.x--;
-	}
-	if (c=='d') {
-		mydog.x++;
-	}
+
 	// This was just simple movements I was thinking of, but we need a way to connect D to the calls.
 	// In other words, this code above does nothing. Still wanted to keep it in for now
 }
