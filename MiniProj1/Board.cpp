@@ -47,7 +47,7 @@ void Board::InitAll() {
 		addFood();
 		addTraps();
 		printBoard();
-		//playGame();
+		playGame();
 		//cout << "Play again? " << endl;
 		//string s = "no";
 		//cin >> s;
@@ -279,7 +279,7 @@ void Board::boardConfig() {
 			}
 		}
 
-			board[startx][starty]='D';//gotta put wall restrictions in cuz they could overlap doggo
+			board[mydog.x][mydog.y]='D';//gotta put wall restrictions in cuz they could overlap doggo
 			// Added wall restrictions, doggo safe for the first round - BL
 			board[endx][endy]='E';
 
@@ -327,7 +327,7 @@ void Board::printBoard() {
 	}
 }
 bool Board::moveDog(char c) {
-	/*if (c=='r') {
+	if (c=='r') {
 		mydog.x++;
 	}
 	if (c=='l') {
@@ -338,23 +338,7 @@ bool Board::moveDog(char c) {
 	}
 	if (c=='d') {
 		mydog.y++;
-	}*/
+	}
 	// This was just simple movements I was thinking of, but we need a way to connect D to the calls.
 	// In other words, this code above does nothing. Still wanted to keep it in for now
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
