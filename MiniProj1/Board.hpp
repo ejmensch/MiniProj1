@@ -14,8 +14,8 @@
 using namespace std;
 
 class Board {
-	int size = 20; //the square board's size
-	char board[20][20]; //the board
+	int size = 22; //the square board's size
+	char board[22][22]; //the board
 	int wallStrength; //the amount of strenght needed to take down part of the wall (6)
 	int startx; //Where the dog enters the board (randomly along the left side)
 	int starty; //again, the dog's y entrance to the board (0)
