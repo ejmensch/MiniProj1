@@ -36,7 +36,7 @@ bool Dog::changeStrength(int amt){
 		return false;
 	}
 	else{
-		strength=strength-amt;
+		strength=strength+amt;
 		return true;
 	}
 
@@ -49,7 +49,7 @@ bool Dog::changeStrength(int amt){
 */
 
 void Dog::die(){
-	cout<<"Dang brodie, you're a terrible dog owner. Your dog has died, shame on you."<<endl;
+	cout<<"Dang brodie, you're a terrible dog owner. Your dog, "<< name<< ", has died, shame on you."<<endl;
 }
 /* This method just prints out a sad pathetic death of a dog message, letting everyone
 * know of the demise of the dog object. My message has ACK!!! and judgmental statements
@@ -63,7 +63,7 @@ void Dog::printDog() {
 }
 
 void Dog::won(){
-	cout<<"Good job dawg, you were successfully able to guide your dog through the evil forest!"<<endl;
+	cout<<"Good job dawg, you were successfully able to guide your dog, "<< name<< ", through the evil forest!"<<endl;
 };
 /* again, just a message about the user's incredible prowess in successfully navigating the
 * sweet little puppy dog through the evil forest to the other side. You can make it whatever
