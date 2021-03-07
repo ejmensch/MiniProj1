@@ -90,21 +90,53 @@ void Board::addFood() {
 		for(j=0; j < 22; j++){
 			if (i > 1 and i < 21) {
 				if (j > 1 and j < 21) {
-					if(i % 2 != 0){
-						x=rand()%8;
-						if(x==1){
-							x=rand()%8;
+					if (level == 'e') {
+						if(i % 2 != 0){
+							x=rand()%35;
 							if(x==1){
 								if (board[i][j] != board[endx][endy]) {
 									board[i][j] = 'F';
 								}
 							}
 						}
+						if (j % 2 != 0) {
+							x = rand()%35;
+							if (x == 1) {
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'F';
+								}
+							}
+						}
 					}
-					if (j % 2 != 0) {
-						x = rand() % 5;
-						if (x == 1) {
-							x = rand()%5;
+					if (level == 'm') {
+						if(i % 2 != 0){
+							x=rand()%20;
+							if(x==1){
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'F';
+								}
+							}
+						}
+						if (j % 2 != 0) {
+							x = rand()%20;
+							if (x == 1) {
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'F';
+								}
+							}
+						}
+					}
+					if (level == 'h') {
+						if(i % 2 != 0){
+							x=rand()%10;
+							if(x==1){
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'F';
+								}
+							}
+						}
+						if (j % 2 != 0) {
+							x = rand()%10;
 							if (x == 1) {
 								if (board[i][j] != board[endx][endy]) {
 									board[i][j] = 'F';
@@ -126,21 +158,53 @@ void Board::addTraps() {
 		for(j=0; j < 22; j++){
 			if (i > 1 and i < 21) {
 				if (j > 1 and j < 21) {
-					if(i % 2 != 0){
-						x=rand()%5;
-						if(x==1){
-							x=rand()%5;
+					if (level == 'e') {
+						if(i % 2 != 0){
+							x=rand()%35;
 							if(x==1){
 								if (board[i][j] != board[endx][endy]) {
 									board[i][j] = 'T';
 								}
 							}
 						}
+						if (j % 2 != 0) {
+							x = rand()%35;
+							if (x == 1) {
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'T';
+								}
+							}
+						}
 					}
-					if (j % 2 != 0) {
-						x = rand() % 5;
-						if (x == 1) {
-							x = rand()%5;
+					if (level == 'm') {
+						if(i % 2 != 0){
+							x=rand()%20;
+							if(x==1){
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'T';
+								}
+							}
+						}
+						if (j % 2 != 0) {
+							x = rand()%20;
+							if (x == 1) {
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'T';
+								}
+							}
+						}
+					}
+					if (level == 'h') {
+						if(i % 2 != 0){
+							x=rand()%10;
+							if(x==1){
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'T';
+								}
+							}
+						}
+						if (j % 2 != 0) {
+							x = rand()%10;
 							if (x == 1) {
 								if (board[i][j] != board[endx][endy]) {
 									board[i][j] = 'T';
@@ -162,29 +226,54 @@ void Board::boardConfig() {
 		for(j=0; j < 22; j++) {
 			board[i][j] = ' ';
 			if (board[i][j] != 'D' or board[i][j] != 'E') {
-				if(i % 2 != 0){
-					x=rand()%2;
-					if(x==1){
+				if (level == 'e') {
+					if(i % 5 == 2){
 						x=rand()%2;
 						if(x==1){
 							board[i][j] = '_';
 						}
-						if(x==0){
+					}
+
+					if (j % 4 == 3) {
+						x = rand()%2;
+						if (x == 1) {
+							x = rand()%2;
 							board[i][j] = '|';
 						}
 					}
 				}
-				if (j % 2 != 0) {
-					x = rand() % 2;
-					if (x == 1) {
-						x = rand() % 2;
-						if (x == 1) {
+				if (level == 'm') {
+					if(i % 5 == 2){
+						x=rand()%2;
+						if(x==1){
 							board[i][j] = '_';
 						}
-						if (x == 0) {
+					}
+
+					if (j % 3 == 2) {
+						x = rand()%2;
+						if (x == 1) {
+							x = rand()%2;
 							board[i][j] = '|';
 						}
 					}
+				}
+				if (level == 'h') {
+					if(i % 4 == 2){
+						x=rand()%2;
+						if(x==1){
+							board[i][j] = '_';
+						}
+					}
+
+					if (j % 3 == 2) {
+						x = rand()%2;
+						if (x == 1) {
+							x = rand()%2;
+							board[i][j] = '|';
+						}
+					}
+
 				}
 			}
 		}
@@ -213,11 +302,11 @@ void Board::printBoard() {
 			else if (j==21) {
 				board[i][j] = '|';
 			}
-			if (board[startx][starty] == board[i][j+1] or board[endx][endy] == board[i][j-1]) {
-				board[startx][starty-1] = '-';
+			if (board[startx][starty]) {
+				board[startx][starty-1] = '>';
 			}
 			if (board[endx][endy]) {
-				board[endx][endy+1] = '-';
+				board[endx][endy+1] = '>';
 			}
 			cout << board[i][j] << " ";
 			board[mydog.x][mydog.y]='D';
@@ -227,75 +316,110 @@ void Board::printBoard() {
 }
 bool Board::moveDog(char c) {
 	board[mydog.x][mydog.y]=' '; //comment this out if you wanna see trail of movement
-	bool wall=true;
-	/*if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_') {
-		if (mydog.strength > 6) {
-			cout
-					<< "Do you want to bust through? It'll cost 6 strength (y or n)"
-					<< endl;
-			char response;
-			cin >> response;
-
-			if (response == 'y') {
-				mydog.changeStrength(-6);
-			} else {
-				bool wall = false; //do nothing
-			}
-		}
-	}*/
-
 
 	if (c == 'r') {
-		if(wall == true){
-			mydog.y++;
+		mydog.y++;
+		if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_'){
+			if(mydog.strength > 6){
+				cout<< "Do you want to bust through? It'll cost 6 strength (y or n)"<<endl;
+				char response;
+				cin >> response;
+
+				if (response == 'y'){
+					mydog.changeStrength(-4);
+				}
+				else{
+					mydog.y--;
+					mydog.changeStrength(2);
+				}
+			}
 		}
 		if(mydog.changeStrength(-2)==false){
 			return false;
 		}
 		if(mydog.y==21){
 			mydog.y = 20;
-			cout<<"You can't exit there!"<<endl;
+			cout<<"You can't exit there! You still lose 6 strength for trying"<<endl;
 		}
 	}
 	if (c == 'l') {
-		if(wall == true){
-			mydog.y--;
+		mydog.y--;
+		if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_'){
+			if(mydog.strength > 6){
+				cout<< "Do you want to bust through? It'll cost 6 strength (y or n)"<<endl;
+				char response;
+				cin >> response;
+
+				if (response == 'y'){
+					mydog.changeStrength(-4);
+				}
+				else{
+					mydog.y++;
+					mydog.changeStrength(2);
+				}
+			}
 		}
 		if (mydog.changeStrength(-2) == false) {
 			return false;
 		}
 		if(mydog.y==0){
 			mydog.y = 1;
-			cout<<"You can't exit there!"<<endl;
+			cout<<"You can't exit there! You still lose 6 strength for trying"<<endl;
 		}
 	}
 	if (c == 'u') {
-		if(wall == true){
-			mydog.x--;
+		mydog.x--;
+		if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_'){
+			if(mydog.strength > 6){
+				cout<< "Do you want to bust through? It'll cost 6 strength (y or n)"<<endl;
+				char response;
+				cin >> response;
+
+				if (response == 'y'){
+					mydog.changeStrength(-4);
+				}
+				else{
+					mydog.x++;
+					mydog.changeStrength(2);
+				}
+			}
 		}
 		if (mydog.changeStrength(-2) == false) {
 			return false;
 		}
 		if(mydog.x==0){
 			mydog.x = 1;
-			cout<<"You can't exit there!"<<endl;
+			cout<<"You can't exit there! You still lose 6 strength for trying"<<endl;
 		}
 	}
 	if (c == 'd') {
-		if(wall== true){
-			mydog.x++;
+		mydog.x++;
+		if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_'){
+			if(mydog.strength > 6){
+				cout<< "Do you want to bust through? It'll cost 6 strength (y or n)"<<endl;
+				char response;
+				cin >> response;
+
+				if (response == 'y'){
+					mydog.changeStrength(-4);
+				}
+				else{
+					mydog.x--;
+					mydog.changeStrength(2);
+				}
+			}
 		}
 		if (mydog.changeStrength(-2) == false) {
 			return false;
 		}
 		if(mydog.x==21){
 			mydog.x = 20;
-			cout<<"You can't exit there!"<<endl;
+			cout<<"You can't exit there! You still lose 6 strength for trying"<<endl;
 		}
 	}
 	if (board[mydog.x][mydog.y] == board[endx][endy]) {
-				mydog.won();
-				return false;
+		mydog.won();
+		return false;
 	}
 	if (board[mydog.x][mydog.y] == 'F'){
 		int f = rand()% 18 + 2;
@@ -307,26 +431,17 @@ bool Board::moveDog(char c) {
 		if(mydog.changeStrength(-t)== false){
 			return false;
 		}
-		cout
-				<< "Tough luck buddy, you led your dog, "<< mydog.name<<", into a trap and it lost some strength"
-				<< endl;
-	}
-	if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_'){
-		if(mydog.strength > 6){
-			cout<< "Do you want to bust through? It'll cost 6 strength (y or n)"<<endl;
-			char response;
-			cin >> response;
-
-			if (response == 'y'){
-				mydog.changeStrength(-6);
-			}
-			else{
-				bool wall = false;//do nothing
-			}
+		else {
+			cout
+			<< "Tough luck buddy, you led your dog, "<< mydog.name<<", into a trap and it lost some strength"
+			<< endl;
 		}
 	}
 
-
+	if (mydog.strength <= 0) {
+		mydog.die();
+		return false;
+	}
 	mydog.printDog();
 	return true;
 }
