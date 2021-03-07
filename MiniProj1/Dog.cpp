@@ -30,7 +30,17 @@ Dog::Dog(){
 * coordinates be 0 and 0 because...
 */
 
-//bool Dog::changeStrength(int amt);
+bool Dog::changeStrength(int amt){
+	if(strength <= 0){
+		die();
+		return false;
+	}
+	else{
+		strength=strength-amt;
+		return true;
+	}
+
+}
 /*changeStrength modifies the strength property by whatever amt is (basically adding here)
 * It then calls printDog method to print out current information about the dog.
 * It also checks to make sure that the dog object's strength is >0.

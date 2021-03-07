@@ -40,9 +40,6 @@ void Board::InitAll() {
 		endy = 20;
 		mydog.x = startx;
 		mydog.y = starty;
-		//mydog.printDog();  //EM - i added this to test if it works for 7d.
-		//mydog.die();  //same as above
-		//mydog.won();  //same as above
 		boardConfig();
 		addFood();
 		addTraps();
@@ -68,14 +65,15 @@ void Board::playGame() {
 		char c;
 		cin >> c;
 		play = moveDog(c);
-		if (board[mydog.x][mydog.y] == board[endx][endy]) {
+		/*if (board[mydog.x][mydog.y] == board[endx][endy]) {
 			mydog.won();
 			play = false;
-		}
-		if (mydog.strength == 0) {
+		}*/
+		/*if (mydog.strength == 0) {
 			mydog.die();
 			play = false;
-		}
+		}*/
+
 		printBoard();
 	}
 }
@@ -193,18 +191,6 @@ void Board::boardConfig() {
 
 	}
 }
-
-
-
-
-	/*for(j=-1; j<size; j++){ //top/bottom borders *put these in print board later and figure out how to make them a border*
-		board[0][j]='_';
-		board[19][j]='_';
-	}
-	for(i=0;i<size;i++){ //side borders *same thing I said above-EM*
-		board[i][0]='|';
-		board[i][19]='|';
-	}*/
 void Board::printBoard() {
 	/* (8 pts) code for the printBoard method goes here
 	 */
@@ -239,7 +225,9 @@ bool Board::moveDog(char c) {
 	board[mydog.x][mydog.y]=' '; //comment this out if you wanna see trial of movement
 	if (c == 'r') {
 		mydog.y++;
-		mydog.strength -= 2;
+		if(mydog.changeStrength(2)==false){
+			return false;
+		}
 		if(mydog.y==21){
 			mydog.y = 20;
 			cout<<"You can't exit there!"<<endl;
@@ -247,7 +235,9 @@ bool Board::moveDog(char c) {
 	}
 	if (c == 'l') {
 		mydog.y--;
-		mydog.strength -= 2;
+		if (mydog.changeStrength(2) == false) {
+			return false;
+		}
 		if(mydog.y==0){
 			mydog.y = 1;
 			cout<<"You can't exit there!"<<endl;
@@ -255,7 +245,9 @@ bool Board::moveDog(char c) {
 	}
 	if (c == 'u') {
 		mydog.x--;
-		mydog.strength -= 2;
+		if (mydog.changeStrength(2) == false) {
+			return false;
+		}
 		if(mydog.x==0){
 			mydog.x = 1;
 			cout<<"You can't exit there!"<<endl;
@@ -263,11 +255,19 @@ bool Board::moveDog(char c) {
 	}
 	if (c == 'd') {
 		mydog.x++;
-		mydog.strength -= 2;
+		if (mydog.changeStrength(2) == false) {
+			return false;
+		}
 		if(mydog.x==21){
 			mydog.x = 20;
 			cout<<"You can't exit there!"<<endl;
 		}
 	}
+	if (board[mydog.x][mydog.y] == board[endx][endy]) {
+				mydog.won();
+				return false;
+	}
+
 	mydog.printDog();
+	return true;
 }
