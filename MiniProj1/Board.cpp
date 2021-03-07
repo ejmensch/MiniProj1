@@ -28,12 +28,12 @@ Board::Board(char diff, string name, bool d) {
 	InitAll();
 }
 void Board::InitAll() {
-	//bool keepPlaying = true;
-	//while (keepPlaying) {
-		//cout << "What level of difficulty do you want (e, m, or h)?" << endl;
-		//char c;
-		//cin >> c;
-		//level = c;
+	bool keepPlaying = true;
+	while (keepPlaying) {
+		cout << "What level of difficulty do you want (e, m, or h)?" << endl;
+		char c;
+		cin >> c;
+		level = c;
 		startx = rand()%20 +1;
 		starty = 1;
 		endx = rand()%20 + 1;
@@ -48,18 +48,18 @@ void Board::InitAll() {
 		addTraps();
 		printBoard();
 		playGame();
-		//cout << "Play again? " << endl;
-		//string s = "no";
-		//cin >> s;
-		//if (s == "yes" || s == "Yes" || s == "Y" || s == "y") {
-			//keepPlaying = true;
-			//mydog.reset();
-		//}
-		//else {
-			//cout << "Thanks for playing!" << endl;
-			//keepPlaying = false;
-		//}
-	//}
+		cout << "Play again? " << endl;
+		string s = "no";
+		cin >> s;
+		if (s == "yes" || s == "Yes" || s == "Y" || s == "y") {
+			keepPlaying = true;
+			mydog.reset();
+		}
+		else {
+			cout << "Thanks for playing!" << endl;
+			keepPlaying = false;
+		}
+	}
 }
 void Board::playGame() {
 	bool play = true;
@@ -68,6 +68,14 @@ void Board::playGame() {
 		char c;
 		cin >> c;
 		play = moveDog(c);
+		if (board[mydog.x][mydog.y] == board[endx][endy]) {
+			mydog.won();
+			play = false;
+		}
+		if (mydog.strength == 0) {
+			mydog.die();
+			play = false;
+		}
 		printBoard();
 	}
 }
@@ -80,74 +88,24 @@ void Board::addFood() {
 		for(j=0; j < 22; j++){
 			if (i > 1 and i < 21) {
 				if (j > 1 and j < 21) {
-					if (level == 'e') {
-						if(i % 2 != 0){
+					if(i % 2 != 0){
+						x=rand()%8;
+						if(x==1){
 							x=rand()%8;
 							if(x==1){
-								x=rand()%8;
-								if(x==1){
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'T';
-									}
-								}
-							}
-						}
-						if (j % 2 != 0) {
-							x = rand() % 8;
-							if (x == 1) {
-								x = rand()%8;
-								if (x == 1) {
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'F';
-									}
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'F';
 								}
 							}
 						}
 					}
-					if (level == 'm') {
-						if(i % 2 != 0){
-							x=rand()%6;
-							if(x==1){
-								x=rand()%6;
-								if(x==1){
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'F';
-									}
-								}
-							}
-						}
-						if (j % 2 != 0) {
-							x = rand() % 6;
+					if (j % 2 != 0) {
+						x = rand() % 5;
+						if (x == 1) {
+							x = rand()%5;
 							if (x == 1) {
-								x = rand()%6;
-								if (x == 1) {
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'F';
-									}
-								}
-							}
-						}
-					}
-					if (level == 'h') {
-						if(i % 2 != 0){
-							x=rand()%5;
-							if(x==1){
-								x=rand()%5;
-								if(x==1){
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'F';
-									}
-								}
-							}
-						}
-						if (j % 2 != 0) {
-							x = rand() % 5;
-							if (x == 1) {
-								x = rand()%5;
-								if (x == 1) {
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'F';
-									}
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'F';
 								}
 							}
 						}
@@ -166,74 +124,24 @@ void Board::addTraps() {
 		for(j=0; j < 22; j++){
 			if (i > 1 and i < 21) {
 				if (j > 1 and j < 21) {
-					if (level == 'e') {
-						if(i % 2 != 0){
-							x=rand()%8;
-							if(x==1){
-								x=rand()%8;
-								if(x==1){
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'T';
-									}
-								}
-							}
-						}
-						if (j % 2 != 0) {
-							x = rand() % 8;
-							if (x == 1) {
-								x = rand()%8;
-								if (x == 1) {
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'T';
-									}
-								}
-							}
-						}
-					}
-					if (level == 'm') {
-						if(i % 2 != 0){
-							x=rand()%6;
-							if(x==1){
-								x=rand()%6;
-								if(x==1){
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'T';
-									}
-								}
-							}
-						}
-						if (j % 2 != 0) {
-							x = rand() % 6;
-							if (x == 1) {
-								x = rand()%6;
-								if (x == 1) {
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'T';
-									}
-								}
-							}
-						}
-					}
-					if (level == 'h') {
-						if(i % 2 != 0){
+					if(i % 2 != 0){
+						x=rand()%5;
+						if(x==1){
 							x=rand()%5;
 							if(x==1){
-								x=rand()%5;
-								if(x==1){
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'T';
-									}
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'T';
 								}
 							}
 						}
-						if (j % 2 != 0) {
-							x = rand() % 5;
+					}
+					if (j % 2 != 0) {
+						x = rand() % 5;
+						if (x == 1) {
+							x = rand()%5;
 							if (x == 1) {
-								x = rand()%5;
-								if (x == 1) {
-									if (board[i][j] != board[endx][endy]) {
-										board[i][j] = 'T';
-									}
+								if (board[i][j] != board[endx][endy]) {
+									board[i][j] = 'T';
 								}
 							}
 						}
@@ -306,22 +214,22 @@ void Board::printBoard() {
 			if (i==0) {
 				board[i][j] = '_';
 			}
-			if (i==21) {
+			else if (i==21) {
 				board[i][j] = '_';
 			}
-			if (j==0) {
+			else if (j==0) {
 				board[i][j] = '|';
 			}
-			if (j==21) {
+			else if (j==21) {
 				board[i][j] = '|';
 			}
-			//if (board[startx][starty] == board[i][j+1] or board[endx][endy] == board[i][j-1]) {
-			//	board[i][j] = '-';
-			//	cout << board[i][j] << ">";
-			//}
-			//else {
-				cout << board[i][j] << " ";
-	//	}
+			if (board[startx][starty] == board[i][j+1] or board[endx][endy] == board[i][j-1]) {
+				board[startx][starty-1] = '-';
+			}
+			if (board[endx][endy]) {
+				board[endx][endy+1] = '-';
+			}
+			cout << board[i][j] << " ";
 			board[mydog.x][mydog.y]='D';
 		}
 		cout << endl;
@@ -329,36 +237,37 @@ void Board::printBoard() {
 }
 bool Board::moveDog(char c) {
 	board[mydog.x][mydog.y]=' '; //comment this out if you wanna see trial of movement
-	if(mydog.x==1 || mydog.x==20 || mydog.y==0 || mydog.y==20){//below code reverses the movement attempted
-		if (c == 'r') {
-			mydog.y--;
-		}
-		if (c == 'l') {
-			mydog.y++;
-		}
-		if (c == 'u') {
-			mydog.x++;
-		}
-		if (c == 'd') {
-			mydog.x--;
-		}
-		cout<<"out of bounds"<<endl;
-	}
-	else{
-		if (c == 'r') {
-			mydog.y++;
-		}
-		if (c == 'l') {
-			mydog.y--;
-		}
-		if (c == 'u') {
-			mydog.x--;
-		}
-		if (c == 'd') {
-			mydog.x++;
+	if (c == 'r') {
+		mydog.y++;
+		mydog.strength -= 2;
+		if(mydog.y==21){
+			mydog.y = 20;
+			cout<<"You can't exit there!"<<endl;
 		}
 	}
-
-	// This was just simple movements I was thinking of, but we need a way to connect D to the calls.
-	// In other words, this code above does nothing. Still wanted to keep it in for now
+	if (c == 'l') {
+		mydog.y--;
+		mydog.strength -= 2;
+		if(mydog.y==0){
+			mydog.y = 1;
+			cout<<"You can't exit there!"<<endl;
+		}
+	}
+	if (c == 'u') {
+		mydog.x--;
+		mydog.strength -= 2;
+		if(mydog.x==0){
+			mydog.x = 1;
+			cout<<"You can't exit there!"<<endl;
+		}
+	}
+	if (c == 'd') {
+		mydog.x++;
+		mydog.strength -= 2;
+		if(mydog.x==21){
+			mydog.x = 20;
+			cout<<"You can't exit there!"<<endl;
+		}
+	}
+	mydog.printDog();
 }
