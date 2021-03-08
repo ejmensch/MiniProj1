@@ -34,7 +34,7 @@ void Board::InitAll() {
 		char c;
 		cin >> c;
 		level = c;
-		cout << "pick a name for your dog" <<endl;
+		cout << "Pick a name for your dog:" <<endl;
 		string n;
 		cin >> n;
 		mydog.name = n;
@@ -69,15 +69,6 @@ void Board::playGame() {
 		char c;
 		cin >> c;
 		play = moveDog(c);
-		/*if (board[mydog.x][mydog.y] == board[endx][endy]) {
-			mydog.won();
-			play = false;
-		}*/
-		/*if (mydog.strength == 0) {
-			mydog.die();
-			play = false;
-		}*/
-
 		printBoard();
 	}
 }
@@ -221,7 +212,7 @@ void Board::addTraps() {
 void Board::boardConfig() {
 	/* (8 pts) code for the boardConfig method goes here
 	 */
-	int i,j,x;   //i is row , j is column... we can change that later
+	int i,j,x;
 	for(i=0; i < 22; i++){
 		for(j=0; j < 22; j++) {
 			board[i][j] = ' ';
@@ -277,10 +268,7 @@ void Board::boardConfig() {
 				}
 			}
 		}
-
-			//board[startx][starty]='D';//gotta put wall restrictions in cuz they could overlap doggo
-			// Added wall restrictions, doggo safe for the first round - BL
-			board[endx][endy]='E';
+		board[endx][endy]='E';
 
 	}
 }
@@ -315,13 +303,12 @@ void Board::printBoard() {
 	}
 }
 bool Board::moveDog(char c) {
-	board[mydog.x][mydog.y]=' '; //comment this out if you wanna see trail of movement
-
+	board[mydog.x][mydog.y]=' ';
 	if (c == 'r') {
 		mydog.y++;
 		if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_'){
-			if(mydog.strength > 6){
-				cout<< "Do you want to bust through? It'll cost 6 strength (y or n)"<<endl;
+			if(mydog.strength >= 6){
+				cout<< "Do you want to break through? It'll cost 6 strength (y or n)"<<endl;
 				char response;
 				cin >> response;
 
@@ -332,6 +319,11 @@ bool Board::moveDog(char c) {
 					mydog.y--;
 					mydog.changeStrength(2);
 				}
+			}
+			else {
+				mydog.y--;
+				mydog.changeStrength(2);
+				cout<< "You can't break through, you'll kill your dog"<<endl;
 			}
 		}
 		if(mydog.changeStrength(-2)==false){
@@ -346,7 +338,7 @@ bool Board::moveDog(char c) {
 		mydog.y--;
 		if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_'){
 			if(mydog.strength > 6){
-				cout<< "Do you want to bust through? It'll cost 6 strength (y or n)"<<endl;
+				cout<< "Do you want to break through? It'll cost 6 strength (y or n)"<<endl;
 				char response;
 				cin >> response;
 
@@ -357,6 +349,11 @@ bool Board::moveDog(char c) {
 					mydog.y++;
 					mydog.changeStrength(2);
 				}
+			}
+			else {
+				mydog.y++;
+				mydog.changeStrength(2);
+				cout<< "You can't break through, you'll kill your dog"<<endl;
 			}
 		}
 		if (mydog.changeStrength(-2) == false) {
@@ -370,8 +367,8 @@ bool Board::moveDog(char c) {
 	if (c == 'u') {
 		mydog.x--;
 		if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_'){
-			if(mydog.strength > 6){
-				cout<< "Do you want to bust through? It'll cost 6 strength (y or n)"<<endl;
+			if(mydog.strength >= 6){
+				cout<< "Do you want to break through? It'll cost 6 strength (y or n)"<<endl;
 				char response;
 				cin >> response;
 
@@ -382,6 +379,11 @@ bool Board::moveDog(char c) {
 					mydog.x++;
 					mydog.changeStrength(2);
 				}
+			}
+			else {
+				mydog.x++;
+				mydog.changeStrength(2);
+				cout<< "You can't break through, you'll kill your dog"<<endl;
 			}
 		}
 		if (mydog.changeStrength(-2) == false) {
@@ -395,8 +397,8 @@ bool Board::moveDog(char c) {
 	if (c == 'd') {
 		mydog.x++;
 		if (board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '_'){
-			if(mydog.strength > 6){
-				cout<< "Do you want to bust through? It'll cost 6 strength (y or n)"<<endl;
+			if(mydog.strength >= 6){
+				cout<< "Do you want to break through? It'll cost 6 strength (y or n)"<<endl;
 				char response;
 				cin >> response;
 
@@ -407,6 +409,11 @@ bool Board::moveDog(char c) {
 					mydog.x--;
 					mydog.changeStrength(2);
 				}
+			}
+			else {
+				mydog.x--;
+				mydog.changeStrength(2);
+				cout<< "You can't break through, you'll kill your dog"<<endl;
 			}
 		}
 		if (mydog.changeStrength(-2) == false) {
